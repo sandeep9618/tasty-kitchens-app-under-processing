@@ -28,7 +28,7 @@ class Login extends Component {
     if (response.ok === true) {
       const jsonData = await response.json()
       const {history} = this.props
-      Cookies.set('jwt_token', jsonData, {expires: 3, path: '/login'})
+      Cookies.set('jwt_token', jsonData.jwt_token, {expires: 3, path: '/login'})
       history.replace('/')
     } else {
       const jsonData = await response.json()
@@ -90,42 +90,6 @@ class Login extends Component {
             alt="website login"
             className="website-login-img-desktop"
           />
-        </div>
-
-        <div className="mobile-login-bg-container">
-          <img
-            src="https://res.cloudinary.com/dj3r4fhqp/image/upload/v1678866715/Rectangle_1457_1_qrjij2.png"
-            alt="website login"
-            className="mobile-login-img"
-          />
-          <h1 className="login-heading">Login</h1>
-
-          <form className="login-form-container" onSubmit={this.onClickToLogin}>
-            <label htmlFor="username" className="label">
-              USERNAME
-            </label>
-            <input
-              type="text"
-              id="username"
-              className="login-input"
-              onChange={this.onChangerUserNameIp}
-              value={userNameIp}
-            />
-            <label htmlFor="password" className="label">
-              PASSWORD
-            </label>
-            <input
-              type="password"
-              id="password"
-              className="login-pass-input"
-              onChange={this.onChangerUserPasswordIp}
-              value={userPassIp}
-            />
-            {isShowError ? <p className="error-msg">{errorMsg}</p> : null}
-            <button className="login-btn" type="submit">
-              Login
-            </button>
-          </form>
         </div>
       </>
     )

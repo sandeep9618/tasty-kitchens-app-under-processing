@@ -58,8 +58,9 @@
   margin-bottom: 28px;
   outline: none;
   border: 0px;
-  padding-left: 5px;
+  padding-left: 12px;
   border-radius: 5px;
+  font-family: Roboto;
 }
 .login-pass-input {
   background-color: #e2e8f0;
@@ -68,8 +69,9 @@
   margin-bottom: 10px;
   outline: none;
   border: 0px;
-  padding-left: 5px;
+  padding-left: 12px;
   border-radius: 5px;
+  font-family: Roboto;
 }
 .login-btn {
   color: white;

@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
+import {Redirect} from 'react-router-dom'
 
 import './index.css'
 
@@ -37,9 +38,13 @@ class Login extends Component {
 
   render() {
     const {userNameIp, userPassIp, errorMsg, isShowError} = this.state
+    const jwt = Cookies.get('jwt_token')
+    if (jwt !== undefined) {
+      return <Redirect to="/" />
+    }
     return (
-      <div>
-        <div className="login-bg-container">
+      <>
+        <div className="login-desk-top-bg-container">
           <div className="login-form-bg-container">
             <form
               className="login-form-container"
@@ -86,7 +91,43 @@ class Login extends Component {
             className="website-login-img-desktop"
           />
         </div>
-      </div>
+
+        <div className="mobile-login-bg-container">
+          <img
+            src="https://res.cloudinary.com/dj3r4fhqp/image/upload/v1678866715/Rectangle_1457_1_qrjij2.png"
+            alt="website login"
+            className="mobile-login-img"
+          />
+          <h1 className="login-heading">Login</h1>
+
+          <form className="login-form-container" onSubmit={this.onClickToLogin}>
+            <label htmlFor="username" className="label">
+              USERNAME
+            </label>
+            <input
+              type="text"
+              id="username"
+              className="login-input"
+              onChange={this.onChangerUserNameIp}
+              value={userNameIp}
+            />
+            <label htmlFor="password" className="label">
+              PASSWORD
+            </label>
+            <input
+              type="password"
+              id="password"
+              className="login-pass-input"
+              onChange={this.onChangerUserPasswordIp}
+              value={userPassIp}
+            />
+            {isShowError ? <p className="error-msg">{errorMsg}</p> : null}
+            <button className="login-btn" type="submit">
+              Login
+            </button>
+          </form>
+        </div>
+      </>
     )
   }
 }

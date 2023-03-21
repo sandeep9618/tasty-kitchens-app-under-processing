@@ -1,2 +1,27 @@
-.cart-bg-containeer {
+.cart-bg-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty-cart-img {
+  height: 55vh;
+}
+.order-now-btn {
+  background-color: #f7931e;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  border-radius: 5px;
+  border: 0px;
+  padding: 8px;
+  width: 120px;
+  font-weight: 400;
+  font-size: 16px;
+  margin-left: 10px;
+}
+.empty-cart-description {
+  margin-top: 0px;
+  color: #64748b;
 }

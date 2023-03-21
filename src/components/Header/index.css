@@ -1,0 +1,56 @@
+.header-bg-container {
+  background-color: #f8fafc;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+.header-website-logo {
+  height: 30px;
+}
+.tasty-kitchens-heading-for-header {
+  font-size: 20px;
+  font-family: dm sans;
+  color: #f7931e;
+  font-style: italic;
+  margin-left: 10px;
+}
+.logo-container-for-header {
+  display: flex;
+  align-items: center;
+}
+.home-btn {
+  color: #f7931e;
+  font-size: 16px;
+  border: 0px;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  font-weight: 700;
+}
+.logout-btn {
+  background-color: #f7931e;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  border-radius: 5px;
+  border: 0px;
+  padding: 8px;
+  width: 80px;
+  font-weight: 500;
+  font-size: 16px;
+  margin-left: 10px;
+}
+.cart-btn {
+  color: black;
+  font-size: 16px;
+  border: 0px;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  font-weight: 700;
+  margin-left: 10px;
+  margin-right: 10px;
+}

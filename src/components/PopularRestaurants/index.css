@@ -1,15 +1,57 @@
 .restaurants-bg-container {
   padding-left: 0px;
-  width: 850px;
+  width: 1024px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
+  margin-top: 20px;
 }
 .restaurant-item {
   list-style-type: none;
+  display: flex;
+  margin-bottom: 30px;
+  width: 100%;
 }
 .restaurant-img {
-  height: 140px;
-  width: 220px;
+  height: 110px;
+  width: 150px;
   border-radius: 8px;
+}
+.restaurant-name {
+  font-size: 14px;
+  font-weight: 900;
+  margin-top: 0px;
+}
+.cuisine {
+  font-size: 12px;
+  font-weight: 400;
+  color: #64748b;
+  margin-top: 0px;
+}
+.rating-and-restaurant-name-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin-left: 10px;
+}
+.rating-container {
+  display: flex;
+  align-items: center;
+  height: 20px;
+}
+.rating-para {
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: 3px;
+}
+.total-reviews-para {
+  font-size: 13px;
+  margin-left: 6px;
+  color: #64748b;
+}
+.link-item-popular-rest {
+  text-decoration: none;
+  color: black;
+  width: 32%;
 }

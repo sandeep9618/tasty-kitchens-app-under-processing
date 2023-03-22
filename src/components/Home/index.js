@@ -4,7 +4,7 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import Slider from 'react-slick'
-import {BsFilterLeft} from 'react-icons/bs'
+import {BsFilterLeft, BsChevronRight, BsChevronLeft} from 'react-icons/bs'
 
 import Header from '../Header'
 import FilterOption from '../FilterOption'
@@ -38,7 +38,8 @@ class Home extends Component {
     offersApiStatus: apiStatusConstants.initial,
     restaurantsDetails: [],
     restaurantApiStatus: apiStatusConstants.initial,
-    filterItem: sortByOptions[0].value,
+    filterItem: sortByOptions[1].value,
+    activePage: 1,
   }
 
   componentDidMount() {
@@ -60,15 +61,21 @@ class Home extends Component {
       menuType: i.menu_type,
       name: i.name,
       opensAt: i.opens_at,
-      userRating: i.user_rating,
+      userRating: {
+        ratingText: i.user_rating.rating_text,
+        totalReviews: i.user_rating.total_reviews,
+        ratingColor: i.user_rating.rating_color,
+        rating: i.user_rating.rating,
+      },
     }))
     return csData
   }
 
   getRestaurantsDetails = async () => {
     this.setState({restaurantApiStatus: apiStatusConstants.inProgress})
-    const {filterItem} = this.state
-    const restaurantsUrl = `https://apis.ccbp.in/restaurants-list?offset=${0}&limit=${9}&sort_by_rating=${filterItem}`
+    const {filterItem, activePage} = this.state
+    const offsetValue = (activePage - 1) * 9
+    const restaurantsUrl = `https://apis.ccbp.in/restaurants-list?offset=${offsetValue}&limit=${9}&sort_by_rating=${filterItem}`
     const jwtToken = Cookies.get('jwt_token')
     const options = {
       method: 'GET',
@@ -118,6 +125,12 @@ class Home extends Component {
     </div>
   )
 
+  restaurantsLoaderView = () => (
+    <div testid=" restaurants-list-loader" className="loader-container">
+      <Loader type="ThreeDots" color="#f7931e" height="50" width="50" />
+    </div>
+  )
+
   offerDetailsView = () => {
     const {offersDetails} = this.state
     const settings = {
@@ -156,39 +169,89 @@ class Home extends Component {
     this.setState({filterItem: value}, this.getRestaurantsDetails)
   }
 
-  renderFilterView = () => (
-    <div className="popular-restaurants-heading-container">
-      <h1 className="popular-heading">Popular Restaurants</h1>
-      <div className="filter-and-para-container">
-        <p className="popular-paragraph">
-          Select Your favourite restaurant special dish and make your day
-          happy...
-        </p>
-        <div className="filter-container">
-          <div className="filter-icon">
-            <BsFilterLeft size={22} />
+  renderFilterView = () => {
+    const {filterItem} = this.state
+    return (
+      <div className="popular-restaurants-and-filter-container">
+        <h1 className="popular-heading">Popular Restaurants</h1>
+        <div className="filter-and-para-container">
+          <p className="popular-paragraph">
+            Select Your favourite restaurant special dish and make your day
+            happy...
+          </p>
+          <div className="filter-container">
+            <div className="filter-icon">
+              <BsFilterLeft size={22} />
+            </div>
+            <p className="sort-by-para">Sort By</p>
+            <select
+              className="filter-options"
+              onChange={this.setSortByOption}
+              value={filterItem}
+            >
+              {sortByOptions.map(eachItem => (
+                <FilterOption eachItem={eachItem} key={eachItem.id} />
+              ))}
+            </select>
           </div>
-          <p className="sort-by-para">Sort By</p>
-          <select className="filter-options" onChange={this.setSortByOption}>
-            {sortByOptions.map(eachItem => (
-              <FilterOption eachItem={eachItem} key={eachItem.id} />
-            ))}
-          </select>
         </div>
+        <hr className="hr-line" />
       </div>
-    </div>
-  )
+    )
+  }
+
+  onIncreaseOffset = () => {
+    const {activePage} = this.state
+    if (activePage < 4) {
+      this.setState({activePage: activePage + 1}, this.getRestaurantsDetails)
+    }
+  }
+
+  onDecreaseOffset = () => {
+    const {activePage} = this.state
+    if (activePage > 1) {
+      this.setState({activePage: activePage - 1}, this.getRestaurantsDetails)
+    }
+  }
 
   renderRestaurantDetailsView = () => {
-    const {restaurantsDetails} = this.state
-    return <PopularRestaurants restaurantsDetails={restaurantsDetails} />
+    const {restaurantsDetails, activePage} = this.state
+    return (
+      <>
+        <PopularRestaurants restaurantsDetails={restaurantsDetails} />
+        <div className="pagination-btn-container">
+          <button
+            type="button"
+            testid="pagination-left-button"
+            className="pagination-btn"
+            onClick={this.onDecreaseOffset}
+          >
+            <BsChevronLeft size={16} />
+          </button>
+          <p className="pagination-text">
+            <span testid="active-page-number" className="active-page-number">
+              {activePage}
+            </span>
+            of 20
+          </p>
+          <button
+            type="button"
+            testid="pagination-right-button"
+            className="pagination-btn"
+            onClick={this.onIncreaseOffset}
+          >
+            <BsChevronRight size={16} />
+          </button>
+        </div>
+      </>
+    )
   }
 
   renderRestaurantDetailsStateWise = () => {
     const {restaurantApiStatus} = this.state
     switch (restaurantApiStatus) {
       case apiStatusConstants.inProgress:
-        return this.loaderView()
+        return this.restaurantsLoaderView()
       case apiStatusConstants.success:
         return this.renderRestaurantDetailsView()
       default:

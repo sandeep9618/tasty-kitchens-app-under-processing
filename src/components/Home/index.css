@@ -1,0 +1,53 @@
+.home-container {
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2%;
+}
+
+.loader-container {
+  height: 45vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.offer-img {
+  height: 45vh;
+  width: 100%;
+  outline: none;
+}
+.offers-details-container {
+  height: 45vh;
+  width: 65%;
+}
+.slider-item {
+  outline: none;
+}
+.popular-restaurents-heading-container {
+  width: 65%;
+}
+.popular-heading {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+}
+.popular-paragraph {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  color: #64748b;
+}
+.filter-and-para-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.filter-container {
+  display: flex;
+  align-items: center;
+}

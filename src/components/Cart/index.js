@@ -18,7 +18,9 @@ class Cart extends Component {
           <p className="empty-cart-description">
             Your cart is empty. Add something from the menu.
           </p>
-          <button className="order-now-btn">Order Now</button>
+          <button className="order-now-btn" type="button">
+            Order Now
+          </button>
         </div>
       </div>
     )

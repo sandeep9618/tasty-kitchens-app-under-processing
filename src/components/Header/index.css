@@ -54,3 +54,6 @@
   margin-left: 10px;
   margin-right: 10px;
 }
+.link-item {
+  text-decoration: none;
+}

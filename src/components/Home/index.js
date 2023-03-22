@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 /* eslint-disable no-unused-vars */
 import {Component} from 'react'
 import Cookies from 'js-cookie'
@@ -6,6 +7,9 @@ import Slider from 'react-slick'
 import {BsFilterLeft} from 'react-icons/bs'
 
 import Header from '../Header'
+import FilterOption from '../FilterOption'
+import PopularRestaurants from '../PopularRestaurants'
+
 import './index.css'
 
 const apiStatusConstants = {
@@ -29,10 +33,57 @@ const sortByOptions = [
 ]
 
 class Home extends Component {
-  state = {offersDetails: [], offersApiStatus: apiStatusConstants.initial}
+  state = {
+    offersDetails: [],
+    offersApiStatus: apiStatusConstants.initial,
+    restaurantsDetails: [],
+    restaurantApiStatus: apiStatusConstants.initial,
+    filterItem: sortByOptions[0].value,
+  }
 
   componentDidMount() {
     this.getOfferDetails()
+    this.getRestaurantsDetails()
+  }
+
+  convertingToCamelCase = data => {
+    const csData = data.map(i => ({
+      costForTwo: i.cost_for_two,
+      cuisine: i.cuisine,
+      groupByTime: i.group_by_time,
+      hasOnlineDelivery: i.has_online_delivery,
+      hasTableBooking: i.has_table_booking,
+      id: i.id,
+      imageUrl: i.image_url,
+      isDeliveringNow: i.is_delivering_now,
+      location: i.location,
+      menuType: i.menu_type,
+      name: i.name,
+      opensAt: i.opens_at,
+      userRating: i.user_rating,
+    }))
+    return csData
+  }
+
+  getRestaurantsDetails = async () => {
+    this.setState({restaurantApiStatus: apiStatusConstants.inProgress})
+    const {filterItem} = this.state
+    const restaurantsUrl = `https://apis.ccbp.in/restaurants-list?offset=${0}&limit=${9}&sort_by_rating=${filterItem}`
+    const jwtToken = Cookies.get('jwt_token')
+    const options = {
+      method: 'GET',
+      headers: {authorization: `bearer ${jwtToken}`},
+    }
+    const response = await fetch(restaurantsUrl, options)
+    if (response.ok === true) {
+      const jsonData = await response.json()
+      const {restaurants} = jsonData
+      const csData = this.convertingToCamelCase(restaurants)
+      this.setState({
+        restaurantsDetails: csData,
+        restaurantApiStatus: apiStatusConstants.success,
+      })
+    }
   }
 
   getOfferDetails = async () => {
@@ -58,13 +109,11 @@ class Home extends Component {
         offersDetails: csData,
         offersApiStatus: apiStatusConstants.success,
       })
-    } else {
-      this.setState({offersApiStatus: apiStatusConstants.failure})
     }
   }
 
   loaderView = () => (
-    <div data-testid="restaurants-offers-loader" className="loader-container">
+    <div testid="restaurants-offers-loader" className="loader-container">
       <Loader type="ThreeDots" color="#f7931e" height="50" width="50" />
     </div>
   )
@@ -103,8 +152,12 @@ class Home extends Component {
     }
   }
 
+  setSortByOption = value => {
+    this.setState({filterItem: value}, this.getRestaurantsDetails)
+  }
+
   renderFilterView = () => (
-    <div className="popular-restaurents-heading-container">
+    <div className="popular-restaurants-heading-container">
       <h1 className="popular-heading">Popular Restaurants</h1>
       <div className="filter-and-para-container">
         <p className="popular-paragraph">
@@ -112,11 +165,36 @@ class Home extends Component {
           happy...
         </p>
         <div className="filter-container">
-          <BsFilterLeft size={22} color="#475569" />
+          <div className="filter-icon">
+            <BsFilterLeft size={22} />
+          </div>
+          <p className="sort-by-para">Sort By</p>
+          <select className="filter-options" onChange={this.setSortByOption}>
+            {sortByOptions.map(eachItem => (
+              <FilterOption eachItem={eachItem} key={eachItem.id} />
+            ))}
+          </select>
         </div>
       </div>
     </div>
   )
+
+  renderRestaurantDetailsView = () => {
+    const {restaurantsDetails} = this.state
+    return <PopularRestaurants restaurantsDetails={restaurantsDetails} />
+  }
+
+  renderRestaurantDetailsStateWise = () => {
+    const {restaurantApiStatus} = this.state
+    switch (restaurantApiStatus) {
+      case apiStatusConstants.inProgress:
+        return this.loaderView()
+      case apiStatusConstants.success:
+        return this.renderRestaurantDetailsView()
+      default:
+        return null
+    }
+  }
 
   render() {
     return (
@@ -125,6 +203,7 @@ class Home extends Component {
         <div className="home-container">
           {this.renderOfferDetailsStateWise()}
           {this.renderFilterView()}
+          {this.renderRestaurantDetailsStateWise()}
         </div>
       </div>
     )

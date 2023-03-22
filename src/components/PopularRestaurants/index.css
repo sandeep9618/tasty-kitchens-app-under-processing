@@ -1,0 +1,15 @@
+.restaurants-bg-container {
+  padding-left: 0px;
+  width: 850px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.restaurant-item {
+  list-style-type: none;
+}
+.restaurant-img {
+  height: 140px;
+  width: 220px;
+  border-radius: 8px;
+}

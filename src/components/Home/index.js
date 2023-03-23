@@ -9,6 +9,7 @@ import {BsFilterLeft, BsChevronRight, BsChevronLeft} from 'react-icons/bs'
 import Header from '../Header'
 import FilterOption from '../FilterOption'
 import PopularRestaurants from '../PopularRestaurants'
+import Footer from '../Footer'
 
 import './index.css'
 
@@ -165,8 +166,8 @@ class Home extends Component {
     }
   }
 
-  setSortByOption = value => {
-    this.setState({filterItem: value}, this.getRestaurantsDetails)
+  setSortByOption = event => {
+    this.setState({filterItem: event.target.value}, this.getRestaurantsDetails)
   }
 
   renderFilterView = () => {
@@ -267,6 +268,7 @@ class Home extends Component {
           {this.renderOfferDetailsStateWise()}
           {this.renderFilterView()}
           {this.renderRestaurantDetailsStateWise()}
+          <Footer />
         </div>
       </div>
     )

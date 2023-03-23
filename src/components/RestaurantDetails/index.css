@@ -1,8 +1,101 @@
-.restaurant-bg-details {
+.restaurant-details-bg-container {
   height: 85vh;
-  overflow-y: auto;
+  width: 100%;
+}
+.restaurant-details-loader {
+  height: 80vh;
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+}
+.restaurant-details-container {
+  height: 85vh;
+  width: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.banner-details-container {
+  background-image: url('https://res.cloudinary.com/dj3r4fhqp/image/upload/v1679554666/Frame_279_nwhzkq.png');
+  height: 500px;
+  width: 1024px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 17px;
+  padding-left: 5%;
+  margin-top: 2%;
+  padding: 3%;
+}
+.restaurant-details-img {
+  height: 30vh;
+  width: 20vw;
+}
+.restaurant-banner-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 2%;
+}
+.banner-heading {
+  color: white;
+  font-family: Dm sans;
+  font-size: 24px;
+  font-weight: 500;
+  margin-top: 0px;
+}
+.banner-cuisine {
+  color: white;
+  font-family: Dm sans;
+  font-size: 12px;
+  font-weight: 300;
+  margin-top: 0px;
+}
+.banner-location {
+  color: white;
+  font-family: Dm sans;
+  font-size: 14px;
+  font-weight: 300;
+  margin-top: 0px;
+}
+.banner-rating-and-cost-container {
+  display: flex;
+  align-items: center;
+}
+.banner-rating-para {
+  color: white;
+  font-family: Dm sans;
+  font-size: 14px;
+  font-weight: 600;
+}
+.banner-rating-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0px;
+}
+.banner-hr-line {
+  color: white;
+  height: 55px;
+  margin-left: 35px;
+  margin-right: 35px;
+}
+.banner-rating-and-count-of-reviews-container {
+  display: flex;
+  flex-direction: column;
+}
+.banner-no-of-reviews {
+  color: white;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 0px;
+}
+.banner-cost-for-two-para {
+  color: white;
+  font-family: Dm sans;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 13px;
 }

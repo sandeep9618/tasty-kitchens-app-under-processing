@@ -127,7 +127,7 @@ class Home extends Component {
   )
 
   restaurantsLoaderView = () => (
-    <div testid=" restaurants-list-loader" className="loader-container">
+    <div testid="restaurants-list-loader" className="loader-container">
       <Loader type="ThreeDots" color="#f7931e" height="50" width="50" />
     </div>
   )

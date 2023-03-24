@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
 import {Component} from 'react'
 import {AiFillStar} from 'react-icons/ai'
@@ -9,6 +10,20 @@ class FoodItem extends Component {
   state = {isAddBtnVisible: true, count: 1}
 
   onToggleAddBtn = () => {
+    const {count} = this.state
+    const {eachFoodItem} = this.props
+    const {id, name, imageUrl, cost} = eachFoodItem
+    const obj = {cost, quantity: count, id, imageUrl, name}
+    const item = localStorage.getItem('cartData')
+    if (item === null) {
+      localStorage.setItem('cartData', JSON.stringify([obj]))
+    } else {
+      let parsedData = JSON.parse(item)
+      parsedData = [...parsedData, obj]
+
+      localStorage.setItem('cartData', JSON.stringify(parsedData))
+    }
+
     this.setState(i => ({
       isAddBtnVisible: !i.isAddBtnVisible,
     }))
@@ -16,8 +31,12 @@ class FoodItem extends Component {
 
   onIncrementCount = () => {
     const {count} = this.state
+    const {eachFoodItem} = this.props
+    const {id, name, imageUrl, cost} = eachFoodItem
+    const obj = {cost, quantity: count, id, imageUrl, name}
     if (count > 0) {
       this.setState(i => ({count: i.count + 1}))
+      console.log(obj)
     }
   }
 

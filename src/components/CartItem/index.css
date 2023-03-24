@@ -1,0 +1,41 @@
+.cart-item-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+  margin-bottom: 25px;
+  width: 1024px;
+}
+.cart-item-img {
+  height: 100px;
+  width: 150px;
+  border-radius: 5px;
+}
+
+.cart-img-and-name-container {
+  display: flex;
+  align-items: center;
+  width: 33%;
+}
+.cart-food-item-name {
+  font-size: 16px;
+  margin-left: 12px;
+  font-weight: 600;
+}
+.quantity-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 33%;
+}
+.cart-amount-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 33%;
+}
+.cart-item-cost {
+  color: #ffa412;
+  font-size: 16px;
+  font-weight: 600;
+}

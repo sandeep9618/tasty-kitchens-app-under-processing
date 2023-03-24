@@ -8,6 +8,7 @@ import {FaRupeeSign} from 'react-icons/fa'
 
 import Header from '../Header'
 import Footer from '../Footer'
+import FoodItem from '../FoodItem'
 
 import './index.css'
 
@@ -85,6 +86,18 @@ class RestaurantDetails extends Component {
     </div>
   )
 
+  renderFoodItems = () => {
+    const {restaurantDetails} = this.state
+    const {foodItems} = restaurantDetails
+    return (
+      <ul className="food-items-container">
+        {foodItems.map(eachFoodItem => (
+          <FoodItem eachFoodItem={eachFoodItem} key={eachFoodItem.id} />
+        ))}
+      </ul>
+    )
+  }
+
   renderSuccessView = () => {
     const {restaurantDetails} = this.state
     const {
@@ -128,17 +141,8 @@ class RestaurantDetails extends Component {
             </div>
           </div>
         </div>
+        {this.renderFoodItems()}
         <Footer />
-
-        <h1>ok</h1>
-        <h1>ok</h1>
-        <h1>ok</h1>
-        <h1>ok</h1>
-        <h1>ok</h1>
-        <h1>ok</h1>
-        <h1>ok</h1>
-        <h1>ok</h1>
-        <h1>ok</h1>
       </div>
     )
   }

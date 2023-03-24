@@ -145,9 +145,9 @@ class Home extends Component {
       <div className="offers-details-container">
         <Slider {...settings}>
           {offersDetails.map(eachItem => (
-            <div className="slider-item">
+            <li className="slider-item" key={eachItem.id}>
               <img src={eachItem.imageUrl} alt="offer" className="offer-img" />
-            </div>
+            </li>
           ))}
         </Slider>
       </div>

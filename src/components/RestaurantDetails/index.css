@@ -99,3 +99,9 @@
   font-weight: 600;
   margin-bottom: 13px;
 }
+.food-items-container {
+  width: 1024px;
+  padding-left: 0%;
+  display: flex;
+  flex-wrap: wrap;
+}

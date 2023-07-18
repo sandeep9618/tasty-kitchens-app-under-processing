@@ -1,3 +1,4 @@
+/* eslint-disable react/self-closing-comp */
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import {Redirect} from 'react-router-dom'
@@ -69,6 +70,7 @@ class Login extends Component {
                 className="login-input"
                 onChange={this.onChangerUserNameIp}
                 value={userNameIp}
+                placeholder="Username"
               />
               <label htmlFor="password" className="label">
                 PASSWORD
@@ -79,11 +81,12 @@ class Login extends Component {
                 className="login-pass-input"
                 onChange={this.onChangerUserPasswordIp}
                 value={userPassIp}
+                placeholder="Password"
               />
-              {isShowError ? <p className="error-msg">{errorMsg}</p> : null}
               <button className="login-btn" type="submit">
                 Login
               </button>
+              {isShowError ? <p className="error-msg">{errorMsg}</p> : null}
             </form>
           </div>
           <img
@@ -91,6 +94,30 @@ class Login extends Component {
             alt="website login"
             className="website-login-img-desktop"
           />
+        </div>
+
+        <div>
+          <div className="login-mobile-bg-container"></div>{' '}
+          <div className="login-mobile-card">
+            <div>
+              <img
+                src="https://res.cloudinary.com/dj3r4fhqp/image/upload/v1689677104/Frame_274_lwbjwk.png"
+                alt="website logo"
+                className="mobile-website-logo"
+              />
+              <h1 className="mobile-website-heading">Tasty Kitchens</h1>
+            </div>
+            <input
+              type="text"
+              placeholder="Username"
+              className="mobile-login-input"
+            />
+            <input
+              type="text"
+              placeholder="Password"
+              className="mobile-login-input"
+            />
+          </div>
         </div>
       </>
     )

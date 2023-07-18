@@ -8,7 +8,6 @@
   width: 100%;
   justify-content: space-between;
 }
-
 .login-website-heading {
   color: #f7931e;
   font-style: italic;
@@ -24,7 +23,7 @@
 }
 .login-form-container {
   box-shadow: 0px 8px 40px rgba(7, 7, 7, 0.08);
-  height: 80vh;
+  height: 70vh;
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -87,8 +86,8 @@
 }
 .error-msg {
   color: RED;
-  font-size: 12px;
-  margin-top: 0px;
+  font-size: 14px;
+  margin-top: 6px;
   margin-bottom: 10px;
 }
 .website-login-img-desktop {
@@ -109,4 +108,51 @@
   top: -28px;
   width: 310px;
   height: 310px;
+}
+
+@media screen and (max-width: 576px) {
+  .login-desk-top-bg-container {
+    display: none;
+  }
+}
+
+.login-mobile-bg-container {
+  background-image: url('https://res.cloudinary.com/dj3r4fhqp/image/upload/ar_1:1,c_fill,co_rgb:ffffff,dn_54,g_auto,w_1000/v1678866929/Rectangle_1456_l9mght.png');
+  height: 100vh;
+  background-position: center;
+  filter: blur(4px);
+}
+.login-mobile-card {
+  position: absolute;
+  top: 25%;
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+  background-color: #ffffff20;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile-website-logo {
+  height: 60px;
+  width: 60px;
+}
+.mobile-website-heading {
+  color: orange;
+}
+
+.mobile-login-input {
+  background-color: transparent;
+  outline: none;
+  border-style: solid;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 1px solid black;
+  font-size: 18px;
+  margin-top: 50px;
+}
+.mobile-login-input::placeholder {
+  color: white;
 }
